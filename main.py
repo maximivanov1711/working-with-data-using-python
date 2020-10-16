@@ -41,7 +41,7 @@ def main():
     })
     form['has_car'] = form['Есть ли у вас автомобиль?'] == 'да'
 
-    eng_columns_names = [
+    columns_names = [
         'prefers_food',
         'prefers_appliances',
         'prefers_products_for_an_active_lifestyle',
@@ -49,7 +49,7 @@ def main():
         'prefers_products_for_children',
         'prefers_household_chemicals',
     ]
-    ru_categories_names = [
+    categories_names = [
         'Продукты питания',
         'Бытовая техника',
         'Товары для активного образа жизни',
@@ -58,9 +58,9 @@ def main():
         'бытовая химия'
     ]
 
-    for eng_col_name, ru_ctg_name in zip(eng_columns_names, ru_categories_names):
-        form[eng_col_name] = form['Какие товары вас интересуют (выберите 2 варианта):'].apply(
-            lambda v: v.find(ru_ctg_name) >= 0
+    for col_name, ctg_name in zip(columns_names, categories_names):
+        form[col_name] = form['Какие товары вас интересуют (выберите 2 варианта):'].apply(
+            lambda v: v.find(ctg_name) >= 0
         )
 
     form.drop(columns=[
