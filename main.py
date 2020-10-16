@@ -58,9 +58,9 @@ def main():
         'бытовая химия'
     ]
 
-    for eng_col_name, ru_col_name in zip(eng_columns_names, ru_categories_names):
+    for eng_col_name, ru_ctg_name in zip(eng_columns_names, ru_categories_names):
         form[eng_col_name] = form['Какие товары вас интересуют (выберите 2 варианта):'].apply(
-            lambda v: v.find(ru_col_name) >= 0
+            lambda v: v.find(ru_ctg_name) >= 0
         )
 
     form.drop(columns=[
