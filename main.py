@@ -76,7 +76,7 @@ def main():
         'Есть ли у вас автомобиль?'
     ], axis=1, inplace=True)
 
-    form.to_excel('MK_modified.xlsx')
+    form.to_excel('MK_prepared.xlsx')
 
 
 if __name__ == '__main__':
