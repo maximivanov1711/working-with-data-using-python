@@ -1,11 +1,14 @@
 import pandas as pd
+from colorama import init, Fore, Back
 
 
 def main():
     form = pd.read_excel('MK.xlsx')
 
+
     form.dropna(inplace=True)
     form.drop(['Отметка времени'], axis=1, inplace=True)
+
 
     form['age'] = form['Сколько вам лет?'].map({
         '10-18': 1,
@@ -64,6 +67,7 @@ def main():
             lambda v: v.find(ctg_name) >= 0
         )
 
+
     form.drop(columns=[
         'Сколько вам лет?',
         'Чем вы занимаетесь?',
@@ -77,7 +81,15 @@ def main():
         'Есть ли у вас автомобиль?'
     ], axis=1, inplace=True)
 
-    form.to_excel('MK_prepared.xlsx')
+
+    init(autoreset=True)
+
+    if len(form) == len(form.dropna()):
+        print(Fore.BLACK + Back.GREEN + 'Обработка данных успешно завершена...')
+
+        form.to_excel('MK_prepared.xlsx')
+    else:
+        print(Fore.BLACK + Back.RED + 'При обработке данных произошла ошибка!')
 
 
 if __name__ == '__main__':
